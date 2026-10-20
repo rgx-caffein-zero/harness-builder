@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harness Builder の設定</title>
+  <link rel="stylesheet" href="ui/common.css">
+  <link rel="stylesheet" href="ui/options.css">
+</head>
+<body>
+  <div class="page">
+    <header class="page-head">
+      <img src="icons/icon48.png" alt="" width="32" height="32">
+      <div>
+        <h1>Harness Builder の設定</h1>
+        <p class="muted small" id="ver"></p>
+      </div>
+    </header>
+
+    <section class="card" id="sec-team">
+      <h2>チーム設定ファイル</h2>
+      <p class="muted small">LiteLLMの接続先・使用モデル・取り込みを許可するサイト・チーム共通ルールをまとめたファイルです。完成したハーネスと同じ場所（Git または Box）で管理し、各自はここで読み込むだけで設定が完了します。</p>
+      <div id="team-view"></div>
+      <div class="row">
+        <button class="btn primary" id="team-import">チーム設定ファイルを読み込む</button>
+        <button class="btn" id="team-grant">許可リストのサイトへのアクセスを許可</button>
+        <button class="btn" id="team-sample">ひな形をダウンロード</button>
+        <button class="btn danger" id="team-clear">チーム設定を外す</button>
+        <input type="file" id="team-file" accept=".json,application/json" hidden>
+      </div>
+    </section>
+
+    <section class="card" id="sec-profiles">
+      <h2>LiteLLM の接続先</h2>
+      <p class="muted small">キーはチーム単位・案件単位で発行されるため、接続先を複数登録して切り替えられます。キーはこのブラウザの中にだけ保存されます。</p>
+      <div class="row">
+        <label class="field inline"><span>使用する接続先</span><select id="profile-select"></select></label>
+        <button class="btn" id="profile-add">追加</button>
+        <button class="btn danger" id="profile-del">削除</button>
+      </div>
+      <form id="profile-form" autocomplete="off"></form>
+      <div class="row">
+        <button class="btn primary" id="profile-save">保存</button>
+        <button class="btn" id="profile-test">接続テスト</button>
+        <span id="profile-msg" class="small"></span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>設定のバックアップ</h2>
+      <p class="muted small">新しいパッケージを入れ直す前にエクスポートし、入れ直した後にインポートしてください（拡張機能を削除すると設定と履歴が消えます）。</p>
+      <div class="row">
+        <label class="small"><input type="checkbox" id="backup-keys"> APIキーも含める（ファイルの扱いに注意）</label>
+      </div>
+      <div class="row" style="margin-top:6px">
+        <button class="btn" id="backup-export">エクスポート</button>
+        <button class="btn" id="backup-import">インポート</button>
+        <input type="file" id="backup-file" accept=".json,application/json" hidden>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>生成履歴</h2>
+      <p class="muted small">生成したハーネスは、このブラウザの中に保存されます。</p>
+      <ul id="history" class="history"></ul>
+    </section>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="vendor/jszip.min.js"></script>
+  <script type="module" src="ui/options.js"></script>
+</body>
+</html>

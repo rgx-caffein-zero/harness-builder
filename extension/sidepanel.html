@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harness Builder</title>
+  <link rel="stylesheet" href="ui/common.css">
+  <link rel="stylesheet" href="ui/sidepanel.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <img src="icons/icon32.png" alt="" width="20" height="20">
+      <span>Harness Builder</span>
+    </div>
+    <div class="header-actions">
+      <button class="btn ghost small" id="btn-open-tab" title="ブラウザのタブで大きく開く">タブで開く</button>
+      <button class="btn ghost small" id="btn-new" title="作業中の内容を消して最初から">新規</button>
+      <button class="btn ghost small" id="btn-options" title="接続先・チーム設定">設定</button>
+    </div>
+  </header>
+  <div id="conn" class="conn"></div>
+  <nav id="stepper" class="stepper" aria-label="手順"></nav>
+  <main id="main" class="main"></main>
+  <footer class="app-footer">
+    <button class="btn" id="btn-back">戻る</button>
+    <span id="footer-hint" class="footer-hint"></span>
+    <button class="btn primary" id="btn-next">次へ</button>
+  </footer>
+
+  <dialog id="dlg" class="dlg"></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="vendor/jszip.min.js"></script>
+  <script src="vendor/mammoth.browser.min.js"></script>
+  <script src="vendor/xlsx.full.min.js"></script>
+  <script type="module" src="ui/sidepanel.js"></script>
+</body>
+</html>

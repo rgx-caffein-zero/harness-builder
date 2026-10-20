@@ -1,0 +1,99 @@
+:root {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --surface-2: #efede6;
+  --border: #dcd8cd;
+  --text: #1f2421;
+  --text-2: #5c625d;
+  --accent: #2f6f5e;
+  --accent-ink: #ffffff;
+  --accent-soft: #e2efe9;
+  --warn: #9a5b00;
+  --warn-soft: #fbf0dc;
+  --error: #a93226;
+  --error-soft: #fbe6e3;
+  --ok: #2f6f5e;
+  --ok-soft: #e2efe9;
+  --radius: 8px;
+  --mono: ui-monospace, "SFMono-Regular", Consolas, "Cascadia Mono", monospace;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #171a18;
+    --surface: #1f2321;
+    --surface-2: #272c29;
+    --border: #3a403c;
+    --text: #e8ebe8;
+    --text-2: #a3aaa5;
+    --accent: #6cbfa6;
+    --accent-ink: #0f1a16;
+    --accent-soft: #23362f;
+    --warn: #e0a64a;
+    --warn-soft: #3a2f1c;
+    --error: #ef8b80;
+    --error-soft: #3b2220;
+    --ok: #6cbfa6;
+    --ok-soft: #23362f;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 13px/1.6 system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Yu Gothic UI", Meiryo, sans-serif;
+}
+h1, h2, h3 { line-height: 1.35; margin: 0 0 8px; }
+h2 { font-size: 15px; }
+h3 { font-size: 13px; }
+p { margin: 0 0 8px; }
+a { color: var(--accent); }
+code { font-family: var(--mono); font-size: 12px; background: var(--surface-2); padding: 1px 4px; border-radius: 4px; }
+.muted { color: var(--text-2); }
+.small { font-size: 12px; }
+
+.btn {
+  appearance: none; border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; white-space: nowrap;
+}
+.btn:hover { border-color: var(--text-2); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.btn.danger { color: var(--error); }
+.btn.ghost { background: transparent; border-color: transparent; }
+.btn.ghost:hover { background: var(--surface-2); }
+.btn.small { padding: 3px 8px; font-size: 12px; }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; margin-bottom: 12px; }
+.field { display: block; margin-bottom: 12px; }
+.field > span { display: block; font-weight: 600; margin-bottom: 4px; }
+.field .hint { display: block; font-weight: 400; color: var(--text-2); font-size: 12px; margin-top: 2px; }
+input[type=text], input[type=url], input[type=password], input[type=number], select, textarea {
+  width: 100%; padding: 6px 8px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--surface); color: var(--text); font: inherit;
+}
+textarea { resize: vertical; min-height: 64px; }
+input:focus, select:focus, textarea:focus, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.notice { border-radius: 6px; padding: 8px 10px; margin-bottom: 10px; font-size: 12px; }
+.notice.warn { background: var(--warn-soft); color: var(--warn); }
+.notice.error { background: var(--error-soft); color: var(--error); }
+.notice.ok { background: var(--ok-soft); color: var(--ok); }
+.notice.info { background: var(--surface-2); color: var(--text-2); }
+
+.chip { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--border); color: var(--text-2); margin: 0 4px 4px 0; }
+.chip.full { background: var(--ok-soft); color: var(--ok); border-color: transparent; }
+.chip.partial { background: var(--warn-soft); color: var(--warn); border-color: transparent; }
+.chip.missing { background: var(--surface-2); }
+.chip.error { background: var(--error-soft); color: var(--error); border-color: transparent; }
+
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.spacer { flex: 1; }
+
+.dlg { border: 1px solid var(--border); border-radius: 10px; background: var(--surface); color: var(--text); padding: 16px; width: min(560px, 94vw); max-height: 88vh; }
+.dlg::backdrop { background: rgba(0,0,0,.35); }
+.dlg .dlg-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
+
+.toast { position: fixed; left: 50%; bottom: 64px; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: 8px 14px; border-radius: 6px; font-size: 12px; opacity: 0; pointer-events: none; transition: opacity .2s; max-width: 90vw; z-index: 10; }
+.toast.show { opacity: 1; }

@@ -1,0 +1,48 @@
+{
+  "_comment": "出力先ツールごとのファイル配置と権限の対応表。Claude Code / Codex の仕様が変わったら、このファイルを書き換えてください（コードの修正は不要です）。2026年10月時点の公式ドキュメントに基づく。",
+  "version": "2026-10",
+  "metaDir": ".harness",
+  "targets": {
+    "claude": {
+      "label": "Claude Code",
+      "docsUrl": "https://code.claude.com/docs",
+      "project": {
+        "instructionFile": "CLAUDE.md",
+        "skillsDir": ".claude/skills",
+        "agentsDir": ".claude/agents",
+        "settingsFile": ".claude/settings.json"
+      },
+      "readOnlyAgentTools": "Read, Grep, Glob",
+      "bashPrefixSuffix": ":*",
+      "settingsSchema": "https://json.schemastore.org/claude-code-settings.json",
+      "permissionLevels": {
+        "strict": { "ask": ["Bash", "WebFetch"], "defaultMode": null },
+        "standard": { "ask": [], "defaultMode": null },
+        "autonomous": { "ask": [], "defaultMode": "acceptEdits" }
+      },
+      "alwaysDenyPaths": [".env", ".env.*", "**/*.pem", "**/*.key"]
+    },
+    "codex": {
+      "label": "Codex",
+      "docsUrl": "https://developers.openai.com/codex",
+      "project": {
+        "instructionFile": "AGENTS.md",
+        "skillsDir": ".agents/skills",
+        "configFile": ".codex/config.toml"
+      },
+      "permissionLevels": {
+        "strict": { "approval_policy": "untrusted", "sandbox_mode": "read-only" },
+        "standard": { "approval_policy": "on-request", "sandbox_mode": "workspace-write" },
+        "autonomous": { "approval_policy": "on-request", "sandbox_mode": "workspace-write" }
+      },
+      "networkAccess": false,
+      "configNote": "プロジェクトの .codex/config.toml は、Codex でそのプロジェクトを「信頼済み」にしたときだけ読み込まれます。"
+    }
+  },
+  "limits": {
+    "instructionFileWarnLines": 300,
+    "instructionFileWarnChars": 25000,
+    "skillNameMax": 64,
+    "skillDescriptionMax": 1024
+  }
+}

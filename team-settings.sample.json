@@ -1,0 +1,29 @@
+{
+  "kind": "harness-builder-team-settings",
+  "version": 1,
+  "teamName": "〇〇課 開発チーム",
+  "litellm": {
+    "baseUrl": "https://litellm.example.internal",
+    "models": {
+      "generate": "azure-gpt-4.1",
+      "classify": "azure-gpt-4.1-mini",
+      "vision": "azure-gpt-4.1"
+    }
+  },
+  "allowedDomains": [
+    "confluence.example.co.jp",
+    "*.sharepoint.com",
+    "backlog.example.co.jp"
+  ],
+  "commonRules": [
+    "顧客の個人情報（氏名・連絡先・住所）を成果物やログに出力しない",
+    "本番環境への接続・デプロイは行わず、手順の提示にとどめる"
+  ],
+  "forbiddenPaths": [
+    ".env",
+    "secrets/",
+    "config/production/"
+  ],
+  "defaultTargets": ["claude", "codex"],
+  "outputLanguage": "ja"
+}
